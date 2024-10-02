@@ -53,7 +53,7 @@ const RetrievePayment = async (req, res) => {
         const user = req.params.id;
         const userFound = await UserModel.findById(user)
         if (userFound) {
-            const saved = await PaymentModel.find({ user }, "createdAt paymentReference paymentStatus paidAmount", { sort: { createdAt: -1 } }).limit(6).exec();;
+            const saved = await PaymentModel.find({ user }, "createdAt paymentReference paymentStatus paidAmount phone", { sort: { createdAt: -1 } }).limit(10).exec();;
             if (saved) {
                 return res.json(createOutput(true, saved));
             } else {
