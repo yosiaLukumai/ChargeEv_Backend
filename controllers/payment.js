@@ -1,6 +1,7 @@
 const PaymentModel = require("../models/Payment")
 const UserModel = require("../models/users")
 const io = require("./../index");
+const createOutput = require("../utils").createOutput;
 const { uuid } = require('uuidv4');
 
 const SavePayment = async (req, res) => {
