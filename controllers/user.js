@@ -36,6 +36,7 @@ const register = async (req, res) => {
       password,
       balance: 0,
       fullName,
+      remainedUnit: 0,
       phone,
       userType
 

@@ -14,6 +14,9 @@ const users = mongoose.Schema({
     balance: {
         type: Number,
     },
+    remainedUnit: {
+        type: Number,
+    },
     fullName: {
         type: String
     },

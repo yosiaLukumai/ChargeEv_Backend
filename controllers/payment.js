@@ -19,8 +19,21 @@ const SavePayment = async (req, res) => {
                 paymentReference: uuid()
             });
             if (saved) {
-                io.Socket.emit("newpayment", { user, paidAmount })
-                return res.json(createOutput(true, saved));
+                // let update this user
+                const updated = await UserModel.updateOne(
+                    { _id: user },
+                    { $inc: { balance: paidAmount } }
+                );
+
+                if (updated) {
+                    io.Socket.emit("newpayment", { user, paidAmount })
+                    return res.json(createOutput(true, saved));
+                } else {
+                    return res.json(createOutput(false, "Failed to add balance to user"));
+                }
+
+
+
             } else {
                 return res.json(createOutput(false, saved));
             }
